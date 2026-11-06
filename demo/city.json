@@ -1,0 +1,2473 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "tideprint-harbor",
+  "name": "潮痕港",
+  "subtitle": "一座由潮水、劳动与权力反复改写的城市",
+  "language": "zh-CN",
+  "version": "1.0.0",
+  "planningStatus": "reviewable_not_engine_approved",
+  "coordinateSystem": {
+    "width": 1100,
+    "height": 800,
+    "metersPerUnit": 2,
+    "north": "up",
+    "units": "SVG coordinate; 2 meters per unit",
+    "verticalDatum": "虚构平均海面，地图仅作二维拓扑规划"
+  },
+  "brief": {
+    "mode": "fiction_demo",
+    "theme": "同一条潮位线，在低处意味着生活，在高处意味着权力。",
+    "gameplay": "以步行探索与骑行通勤串联双层港城，转角、堤顶与水岸形成不同强度的揭示。",
+    "priority": [
+      "移动可恢复与方向可读",
+      "洪灾和港运变迁的空间可信性",
+      "城区差异与居民生活",
+      "可按边缘缩减的制作规模"
+    ],
+    "conflictRule": "连续通行与地标识别优先；先用有历史理由的局部坡道、连廊和改门解决，不均匀缩放人体工学。",
+    "decisionOwner": "示例中的关卡负责人；实际项目由用户指定",
+    "identity": "旧港灯塔—高堤闸门—台地档案塔构成三角；南岸保留潮汐休息带。",
+    "settingAreaKm2": 12.6,
+    "playableAreaKm2": 1.797,
+    "population": 55000,
+    "populationNote": "六区常住人口合计；设定面积含未制作腹地；可玩面积为六区SVG多边形换算面积的四舍五入值。NPC同屏量未定。",
+    "deliverable": "可交互规划文档；不包含游戏、可玩原型或引擎白盒。"
+  },
+  "assumptions": [
+    {
+      "id": "A01",
+      "text": "原创海历273年、近工业电气化海港，无超自然能力。",
+      "impact": "历史、建筑、势力与交通可替换；不是用户提供的世界观。"
+    },
+    {
+      "id": "A02",
+      "text": "正式游戏假设第三人称步行与骑行；本文档只规划移动与验证，不制作角色控制或游戏原型。",
+      "impact": "改变移动机制将重做尺度、高差、屋顶与镜头实验。"
+    },
+    {
+      "id": "A03",
+      "text": "地图1单位=2m；步行4.5m/s，骑行8m/s；目标引擎未指定。",
+      "impact": "距离与恒速ETA可复算，数值是演示假设，不是GDC参数。"
+    },
+    {
+      "id": "A04",
+      "text": "人口、客流、高度、地价与预算均为原创目标或设定。",
+      "impact": "不得当现实规划标准或已实测数据。"
+    }
+  ],
+  "openQuestions": [
+    {
+      "priority": "P0",
+      "question": "正式项目的主移动系统、镜头与引擎参数是什么？",
+      "blocks": "正式街宽、高差、屋顶与相机指标冻结",
+      "status": "demo_assumption_applied"
+    },
+    {
+      "priority": "P0",
+      "question": "目标平台、交通AI与流式能力边界是什么？",
+      "blocks": "生产放行与性能验收",
+      "status": "not_run"
+    },
+    {
+      "priority": "P1",
+      "question": "实际世界观、保留地标及内容预算是什么？",
+      "blocks": "将原创范例转成实际项目",
+      "status": "demo_assumption_applied"
+    }
+  ],
+  "sources": [
+    {
+      "id": "USER",
+      "title": "用户城市规划脑图",
+      "type": "user",
+      "url": "../README.md",
+      "locator": "用户城市规划脑图／需求摘要",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "从提供的脑图提取规划需求",
+      "limitations": "没有给出实际城市世界观或地图",
+      "designUse": "需求边界与交付结构"
+    },
+    {
+      "id": "GDC-SUM",
+      "title": "GDC 方法索引（开源分发版）",
+      "type": "research",
+      "url": "../skills/open-world-city-planner/references/gdc-user-summary.md",
+      "locator": "开源方法索引；原附件章节号为设计研究定位",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "阅读用户附件后独立归纳方法索引；原附件全文未收入开源版",
+      "limitations": "用户二次总结不等于讲者原话；未逐帧回查视频；本仓库只分发方法索引与公开链接",
+      "designUse": "历史图层、视觉语言、地标骨架、受控实验、跨区验证与生产约束"
+    },
+    {
+      "id": "GDC-1",
+      "title": "Environment Design as Visual Storytelling · Miriam Bellard · 2021",
+      "type": "official",
+      "url": "https://gdcvault.com/play/1027254/Environment-Design-as-Visual-Storytelling",
+      "locator": "官方场次元数据",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "核对讲者、题名与GDC 2021",
+      "limitations": "没有重新观看；方法细节沿用附件概括",
+      "designUse": "原始分享入口；不将元数据核对冒充内容复核"
+    },
+    {
+      "id": "GDC-2",
+      "title": "Building New York in Marvel’s Spider-Man · Josue Benavidez · 2019",
+      "type": "official",
+      "url": "https://www.gdcvault.com/play/1025886/Level-Design-Workshop-Building-New",
+      "locator": "官方场次元数据",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "核对讲者、题名与GDC 2019",
+      "limitations": "没有重新观看；不导入具体摆荡或工期数值",
+      "designUse": "六步流程的原始分享入口"
+    },
+    {
+      "id": "HAFEN",
+      "title": "HafenCity · Infrastructure",
+      "type": "official",
+      "url": "https://www.hafencity.com/en/urban-development/infrastructure",
+      "locator": "Flood protection / plinth and promenade",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "读取官方基础设施页面",
+      "limitations": "只迁移双层空间关系，不复制工程参数；未再分发照片",
+      "designUse": "高位街道与低位滨水之间的空间关系"
+    },
+    {
+      "id": "VENICE",
+      "title": "UNESCO · Venice and its Lagoon",
+      "type": "official",
+      "url": "https://whc.unesco.org/en/list/394",
+      "locator": "Description / Brief synthesis",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "读取遗产页面",
+      "limitations": "不用其真实历史解释原创城市；未再分发照片",
+      "designUse": "水系对聚落和交通的组织作用"
+    },
+    {
+      "id": "WORLD",
+      "title": "潮痕港原创世界观与设定",
+      "type": "fiction",
+      "url": "worldbuilding.md",
+      "locator": "W01–W06；本包原创",
+      "checkedAt": "2026-11-06",
+      "checkedScope": "为本次演示创建",
+      "limitations": "不是原用户既有世界观；所有虚构年份、人口和冲突均可替换",
+      "designUse": "示例城市全部背景与空间因果前提"
+    }
+  ],
+  "claims": [
+    {
+      "id": "U01",
+      "kind": "user_given",
+      "text": "用户要求以世界观与轮廓推导历史、城区、建筑、POI、路网、势力并用交互H5呈现。",
+      "sourceIds": [
+        "USER"
+      ],
+      "locator": "脑图概述、路网、呈现方式",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "S01",
+      "kind": "attachment_summary",
+      "text": "附件概括：设计需扮演建造者、使用者和改造者，以行为与历史图层表达空间。",
+      "sourceIds": [
+        "GDC-SUM"
+      ],
+      "locator": "2.1；视频1约04–16分",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "S02",
+      "kind": "attachment_summary",
+      "text": "附件概括：目标分级、地标关键路优先、单变量尺度实验与跨区测试床可降低返工。",
+      "sourceIds": [
+        "GDC-SUM"
+      ],
+      "locator": "3.1–3.4、4.1；视频2约03–28分",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "S03",
+      "kind": "attachment_summary",
+      "text": "附件归纳：形态图与路径图分开；有限视野、连续移动、道具和未来内容缓冲要有证据。",
+      "sourceIds": [
+        "GDC-SUM"
+      ],
+      "locator": "2.4、5.4、7、10；部分为城市项目归纳",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "V01",
+      "kind": "original_verified",
+      "text": "官方基础设施页说明了高位防洪街道与较低滨水步道的关系。",
+      "sourceIds": [
+        "HAFEN"
+      ],
+      "locator": "Infrastructure / Flood protection；仅用于结构参考",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "V02",
+      "kind": "original_verified",
+      "text": "UNESCO页面将威尼斯城市与泻湖作为相互关联的整体描述。",
+      "sourceIds": [
+        "VENICE"
+      ],
+      "locator": "Description / Brief synthesis；仅用于水城结构参考",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F01",
+      "kind": "fictional",
+      "text": "避风海湾、北部岩台和淡水井使早期航民在旧港聚居，北坡形成高地公署。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W01",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F02",
+      "kind": "fictional",
+      "text": "海历216年机修与煤运在东湾集中，联社出资铺轨，工人沿西南低地自建。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W02",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F03",
+      "kind": "fictional",
+      "text": "244年风暴破坏南岸低地，旧仓失业、居民迁移，留下潮线与废轨。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W03",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F04",
+      "kind": "fictional",
+      "text": "257年议会以防洪与土地租让融资筑堤，联社换取高堤沿线使用权。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W04",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F05",
+      "kind": "fictional",
+      "text": "273年互助会在旧仓、织巷和湿地组织维修、诊疗与水上接驳。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W05",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "F06",
+      "kind": "fictional",
+      "text": "步行4.5m/s、骑行8m/s、碰撞半径0.35m、FOV70°为示例参数。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "W06 / 演示参数",
+      "premises": [],
+      "reasoning": "",
+      "confidence": "high"
+    },
+    {
+      "id": "I01",
+      "kind": "inference",
+      "text": "低地恢复力弱而高堤资本集中，因此新商业沿堤聚集、旧港形成混合再利用。",
+      "sourceIds": [
+        "WORLD"
+      ],
+      "locator": "由灾后资金与地权约束推导",
+      "premises": [
+        "F03",
+        "F04"
+      ],
+      "reasoning": "资本与防洪可达性同时迁移；若资金改为低地修复补贴，此布局需重做。",
+      "confidence": "medium"
+    },
+    {
+      "id": "I02",
+      "kind": "inference",
+      "text": "保留低位水岸、增设高位通道，可同时表达洪灾历史并提供步行绕行。",
+      "sourceIds": [
+        "WORLD",
+        "HAFEN"
+      ],
+      "locator": "空间设计转化",
+      "premises": [
+        "F03",
+        "F04",
+        "V01"
+      ],
+      "reasoning": "保留层间关系，坡道与楼梯要各自验证；不复制现实安全高程。",
+      "confidence": "medium"
+    },
+    {
+      "id": "I03",
+      "kind": "inference",
+      "text": "不均匀压缩普通街区，保护灯塔、堤闸、台地的相对关系，可保留城市身份。",
+      "sourceIds": [
+        "WORLD",
+        "GDC-SUM"
+      ],
+      "locator": "身份骨架与边缘删减",
+      "premises": [
+        "F01",
+        "S02"
+      ],
+      "reasoning": "删减东北填充优先，删除中心高堤会破坏轮廓和绕行。",
+      "confidence": "medium"
+    }
+  ],
+  "eras": [
+    {
+      "id": "T0",
+      "index": 0,
+      "year": 170,
+      "name": "避风聚落",
+      "summary": "潮井与灯塔聚拢航民"
+    },
+    {
+      "id": "T1",
+      "index": 1,
+      "year": 216,
+      "name": "工业东移",
+      "summary": "联社铺轨，工住分化"
+    },
+    {
+      "id": "T2",
+      "index": 2,
+      "year": 244,
+      "name": "长潮灾年",
+      "summary": "南岸受损，城市留下空缺"
+    },
+    {
+      "id": "T3",
+      "index": 3,
+      "year": 257,
+      "name": "高堤重建",
+      "summary": "交通与资本被抬高"
+    },
+    {
+      "id": "T4",
+      "index": 4,
+      "year": 273,
+      "name": "现在",
+      "summary": "旧地再用，秩序重新协商"
+    }
+  ],
+  "factions": [
+    {
+      "id": "F-C",
+      "name": "灯塔议会",
+      "color": "#b18a49",
+      "publicRole": "防洪、地权、公署和教育",
+      "control": "以堤闸许可、租地契和公共工程预算控制干道",
+      "covert": "默许联社优先使用堤顶货运时段",
+      "visual": [
+        "高位入口与成对石柱",
+        "统一潮位尺、租地编号和排队栏杆"
+      ],
+      "districtIds": [
+        "D03",
+        "D04",
+        "D05"
+      ],
+      "claimIds": [
+        "F04"
+      ]
+    },
+    {
+      "id": "F-P",
+      "name": "港务联合社",
+      "color": "#6c8195",
+      "publicRole": "港运、机修、就业与电力",
+      "control": "工牌门禁、工资、轨道和吊机作业时间",
+      "covert": "通过旧港仓储债务维持人情控制",
+      "visual": [
+        "桁架、连续导轨与门禁岗亭",
+        "统一工牌板与维护完好的电缆"
+      ],
+      "districtIds": [
+        "D02",
+        "D03"
+      ],
+      "claimIds": [
+        "F02",
+        "F04"
+      ]
+    },
+    {
+      "id": "F-M",
+      "name": "潮线互助会",
+      "color": "#648e75",
+      "publicRole": "诊疗、维修、互助和水上接驳",
+      "control": "掌握低地日常服务、夜间船路和维修技能",
+      "covert": "在议会名义地权下以熟人网络维持实际秩序",
+      "visual": [
+        "门槛上的共享工具与绳结标记",
+        "雨棚下的药箱、可移动告示与救生梯"
+      ],
+      "districtIds": [
+        "D01",
+        "D05",
+        "D06"
+      ],
+      "claimIds": [
+        "F03",
+        "F05"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "E01",
+      "era": 0,
+      "name": "避风港的诞生",
+      "trigger": "季风航线需要补给，北台地有井水",
+      "actor": "航民与早期公署",
+      "resources": "木石、淡水与航海知识",
+      "constraints": "低地涨潮、北台地可建设面有限",
+      "decision": "先建灯塔与潮井，沿岸形成交易街",
+      "migration": "航民聚居，官署占据上坡",
+      "spatialDelta": "旧港弯街、北坡阶梯与灯塔视线形成",
+      "residue": "磨损系船石与绕井铺砌",
+      "playerEffect": "低处沿水走，高处循灯塔辨方向",
+      "dependsOn": [],
+      "affectedDistrictIds": [
+        "D01",
+        "D04"
+      ],
+      "claimIds": [
+        "F01"
+      ],
+      "counterfactual": "若直接在高地建港，搬运距离会吞掉补给优势。",
+      "validation": "检查时期叠图与玩家视角；实际引擎连续移动仍待测"
+    },
+    {
+      "id": "E02",
+      "era": 1,
+      "name": "煤与轨道向东",
+      "trigger": "动力机修替代帆船手工修造",
+      "actor": "港务联合社",
+      "resources": "煤运资本、工人和轨道设备",
+      "constraints": "旧港弯街无法容纳长货列与船坞",
+      "decision": "东湾建机修带，西南低地建租住排屋",
+      "migration": "工人从旧港迁到织巷，教育服务不足",
+      "spatialDelta": "东区长跨厂房、新货路与西南细巷增长",
+      "residue": "墙体轨槽、班铃和临时加建",
+      "playerEffect": "快速直路与密巷形成速度反差",
+      "dependsOn": [
+        "E01"
+      ],
+      "affectedDistrictIds": [
+        "D01",
+        "D02",
+        "D06",
+        "D04"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "counterfactual": "不扩旧港是因为弯岸、产权和货列半径限制。",
+      "validation": "检查时期叠图与玩家视角；实际引擎连续移动仍待测"
+    },
+    {
+      "id": "E03",
+      "era": 2,
+      "name": "长潮切开城市",
+      "trigger": "极端风暴与排水失修叠加",
+      "actor": "灾民、议会、联社",
+      "resources": "救生船、有限修复款",
+      "constraints": "债务与低地反复进水风险",
+      "decision": "暂停南岸重工，留出蓄水地，居民向高处暂迁",
+      "migration": "旧仓失业转租，住宅加高门槛",
+      "spatialDelta": "南岸空缺、断轨、水痕与纪念水池出现",
+      "residue": "同一高度潮痕贯穿新旧墙体",
+      "playerEffect": "离开拥挤街巷后进入安静低岸",
+      "dependsOn": [
+        "E02"
+      ],
+      "affectedDistrictIds": [
+        "D01",
+        "D02",
+        "D05",
+        "D06"
+      ],
+      "claimIds": [
+        "F03"
+      ],
+      "counterfactual": "全面填高南岸会阻断蓄水与低地生活，资金也不足。",
+      "validation": "检查时期叠图与玩家视角；实际引擎连续移动仍待测"
+    },
+    {
+      "id": "E04",
+      "era": 3,
+      "name": "道路被抬到安全线",
+      "trigger": "灾后投资偏向可收费、可保护的地段",
+      "actor": "灯塔议会与港务联合社",
+      "resources": "租地融资、石工、电车",
+      "constraints": "必须维持海湾视线、低岸接驳与排水",
+      "decision": "筑高堤与闸门，商业和电车集中在堤顶",
+      "migration": "资本沿高堤聚集，旧港保留低租金使用者",
+      "spatialDelta": "高位新直路跨过旧弯路，坡道补齐通行",
+      "residue": "坡脚旧店门、上层统一街面、闸门工牌",
+      "playerEffect": "先压缩视野再到堤顶揭示档案塔",
+      "dependsOn": [
+        "E03"
+      ],
+      "affectedDistrictIds": [
+        "D01",
+        "D03",
+        "D04",
+        "D05"
+      ],
+      "claimIds": [
+        "F04",
+        "I01",
+        "I02"
+      ],
+      "counterfactual": "纯围墙防洪会牺牲水岸连接，采用双层通道但增加维护成本。",
+      "validation": "检查时期叠图与玩家视角；实际引擎连续移动仍待测"
+    },
+    {
+      "id": "E05",
+      "era": 4,
+      "name": "潮线上的互助秩序",
+      "trigger": "低地服务被投资遗漏，维修与诊疗需求增长",
+      "actor": "潮线互助会与居民",
+      "resources": "手艺、旧仓空间、熟人网络",
+      "constraints": "名义地权仍属议会，不能拆主堤",
+      "decision": "旧仓改工坊，雨院改诊所，低岸开慢行和接驳",
+      "migration": "修理、夜市与互助替代部分旧工业就业",
+      "spatialDelta": "共享院落、活动雨棚与居民欲望路径",
+      "residue": "修好的门铰、工具墙、夜间绳结路标",
+      "playerEffect": "沿日常痕迹探索可到达的隐性网络",
+      "dependsOn": [
+        "E04"
+      ],
+      "affectedDistrictIds": [
+        "D01",
+        "D05",
+        "D06"
+      ],
+      "claimIds": [
+        "F05",
+        "I01"
+      ],
+      "counterfactual": "清空旧仓建商场会消灭低地服务和故事；保留混用但管理更复杂。",
+      "validation": "检查时期叠图与玩家视角；实际引擎连续移动仍待测"
+    }
+  ],
+  "districts": [
+    {
+      "id": "D01",
+      "name": "旧港埠",
+      "english": "OLD HARBOR",
+      "color": "#a08a65",
+      "since": 0,
+      "polygon": [
+        [
+          110,
+          170
+        ],
+        [
+          365,
+          195
+        ],
+        [
+          375,
+          410
+        ],
+        [
+          150,
+          410
+        ],
+        [
+          90,
+          300
+        ]
+      ],
+      "labelPoint": [
+        230,
+        350
+      ],
+      "areaKm2": 1.6,
+      "population": 12000,
+      "densityPerKm2": 7500,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "低—中收入；渔运、零售与维修",
+      "height": "6–18 m",
+      "elevation": "1–3 m",
+      "style": "水岸弯街与细窄院落；旧仓、楼上居住、首层店铺并存",
+      "biography": "沿码头交易形成；灾后仓租下降，互助维修接手失业空间。议会保留地契，互助会管理日常。",
+      "control": "议会地权／互助会实际服务",
+      "factionId": "F-M",
+      "eventIds": [
+        "E01",
+        "E03",
+        "E05"
+      ],
+      "claimIds": [
+        "F01",
+        "F03",
+        "F05",
+        "S01"
+      ],
+      "functionMix": "住45 / 商25 / 工15 / 教5 / 服务10",
+      "buildingRelations": "共用水井周围是杂货与教室；旧仓临卸货岸，居住退至二层。",
+      "oldNew": "旧仓保留承重墙，屋顶和门铰被逐次修补；外湾新厂使这里不再扩建。",
+      "travel": "步行、推车、水上接驳",
+      "leisure": "夜市、听航海故事、码头小戏",
+      "behavior": "清晨卸鱼→湿石；午后修网→钉墙；夜间交易→可拆灯绳",
+      "grammar": "曲折石墙／密度高／低饱和土黄／屋顶杂乱，水线和入口保持连续",
+      "primaryRoadId": "R01",
+      "referenceIds": [
+        "HAFEN",
+        "GDC-SUM"
+      ],
+      "intensity": 4,
+      "contentReserve": "码头小院24×30m，两个出口，维修与追逐预留"
+    },
+    {
+      "id": "D02",
+      "name": "炉湾机修带",
+      "english": "FURNACE DOCK",
+      "color": "#85939f",
+      "since": 1,
+      "polygon": [
+        [
+          705,
+          205
+        ],
+        [
+          965,
+          200
+        ],
+        [
+          1030,
+          315
+        ],
+        [
+          1000,
+          455
+        ],
+        [
+          715,
+          445
+        ]
+      ],
+      "labelPoint": [
+        858,
+        415
+      ],
+      "areaKm2": 2.6,
+      "population": 6000,
+      "densityPerKm2": 2308,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "工薪与技术工；联社工资分级",
+      "height": "18–42 m",
+      "elevation": "2–4 m",
+      "style": "长跨桁架、连排厂房与受控院落",
+      "biography": "为长船坞和长货列迁到外湾，灾后西侧炉场废弃，东段持续运转。",
+      "control": "港务联合社显性控制",
+      "factionId": "F-P",
+      "eventIds": [
+        "E02",
+        "E03"
+      ],
+      "claimIds": [
+        "F02",
+        "F03",
+        "S01"
+      ],
+      "functionMix": "住15 / 商10 / 工55 / 教5 / 服务15",
+      "buildingRelations": "机修临轨，工人宿舍退到北缘；技术学堂靠班车站，诊室靠门岗。",
+      "oldNew": "保留旧炉壳做导航；新修车间在仍有货运的东岸。",
+      "travel": "骑行、班车、货运；步行需绕作业院",
+      "leisure": "下班球场、工棚音乐",
+      "behavior": "交班等车→棚下磨地；焊修→金属补丁；禁入→工牌和闸臂",
+      "grammar": "锯齿厂顶／大跨度／冷灰／主结构有序、地面维修痕迹密集",
+      "primaryRoadId": "R05",
+      "referenceIds": [
+        "GDC-2",
+        "GDC-SUM"
+      ],
+      "intensity": 5,
+      "contentReserve": "废炉场40×50m，三入口，巡逻与作业障碍预留"
+    },
+    {
+      "id": "D03",
+      "name": "高堤商廊",
+      "english": "LEVEE EXCHANGE",
+      "color": "#bba16e",
+      "since": 3,
+      "polygon": [
+        [
+          395,
+          205
+        ],
+        [
+          680,
+          180
+        ],
+        [
+          715,
+          445
+        ],
+        [
+          390,
+          415
+        ]
+      ],
+      "labelPoint": [
+        545,
+        390
+      ],
+      "areaKm2": 1.4,
+      "population": 8000,
+      "densityPerKm2": 5714,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "中高收入；运输金融、商贸与管理",
+      "height": "24–60 m",
+      "elevation": "8–11 m",
+      "style": "堤顶直街、石基座、连续拱廊与电车站",
+      "biography": "租地融资修堤后，安全入口和客流使商业抬高，坡脚保留旧路和低价店。",
+      "control": "议会明面管理／联社时段货运",
+      "factionId": "F-C",
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04",
+        "I01",
+        "I02"
+      ],
+      "functionMix": "住25 / 商40 / 工5 / 教5 / 服务25",
+      "buildingRelations": "堤顶商廊与办公室相接；坡脚修理与餐食服务换班工人。",
+      "oldNew": "新街整齐，旧店门被半埋在坡脚；不整片拆除以维持接驳。",
+      "travel": "电车、骑行、步行坡道",
+      "leisure": "拱廊餐饮、观潮台",
+      "behavior": "候车→脚印队列；巡检→潮尺；货运优先→活动闸臂",
+      "grammar": "水平基座＋竖向塔体／中高密／暖石色／立面强秩序、坡脚自发陈设",
+      "primaryRoadId": "R03",
+      "referenceIds": [
+        "HAFEN",
+        "GDC-SUM"
+      ],
+      "intensity": 4,
+      "contentReserve": "堤下广场30×36m，两坡道，排队和交易预留"
+    },
+    {
+      "id": "D04",
+      "name": "北台档案区",
+      "english": "UPPER TERRACE",
+      "color": "#9aaa8b",
+      "since": 0,
+      "polygon": [
+        [
+          390,
+          75
+        ],
+        [
+          650,
+          45
+        ],
+        [
+          880,
+          85
+        ],
+        [
+          850,
+          180
+        ],
+        [
+          690,
+          175
+        ],
+        [
+          400,
+          185
+        ]
+      ],
+      "labelPoint": [
+        625,
+        81
+      ],
+      "areaKm2": 2.2,
+      "population": 5000,
+      "densityPerKm2": 2273,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "中高收入；公署、教育与专业服务",
+      "height": "15–72 m",
+      "elevation": "18–26 m",
+      "style": "台地庭院、档案塔与低密学舍",
+      "biography": "最初依井建公署，后扩档案与技校；高地避免灾损但以石阶和门庭制造社会距离。",
+      "control": "灯塔议会显性控制",
+      "factionId": "F-C",
+      "eventIds": [
+        "E01",
+        "E02",
+        "E04"
+      ],
+      "claimIds": [
+        "F01",
+        "F02",
+        "F04",
+        "S03"
+      ],
+      "functionMix": "住30 / 商10 / 工0 / 教35 / 服务25",
+      "buildingRelations": "学舍围内院，档案与公共办事前场相邻，服务住宅在背街。",
+      "oldNew": "旧公署石墙保留，新档案塔向内院生长；不挡灯塔三角视线。",
+      "travel": "步行台阶、骑行长坡、电车换乘",
+      "leisure": "庭院阅读、露天讲课",
+      "behavior": "排队办证→栏杆；学生停留→树荫座位；档案搬运→独立后门",
+      "grammar": "窄高塔与低院落／低密／灰绿／建筑有序、树冠柔化",
+      "primaryRoadId": "R07",
+      "referenceIds": [
+        "GDC-1",
+        "GDC-SUM"
+      ],
+      "intensity": 2,
+      "contentReserve": "学舍内院24×24m，两入口，办事与观察预留"
+    },
+    {
+      "id": "D05",
+      "name": "潮汐留白园",
+      "english": "TIDAL COMMON",
+      "color": "#8eb1a1",
+      "since": 2,
+      "polygon": [
+        [
+          705,
+          475
+        ],
+        [
+          985,
+          480
+        ],
+        [
+          960,
+          650
+        ],
+        [
+          820,
+          735
+        ],
+        [
+          625,
+          690
+        ],
+        [
+          620,
+          585
+        ]
+      ],
+      "labelPoint": [
+        810,
+        665
+      ],
+      "areaKm2": 3.0,
+      "population": 1000,
+      "densityPerKm2": 333,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "少量管理与水岸住户；公共低消费空间",
+      "height": "0–12 m",
+      "elevation": "0–3 m",
+      "style": "蓄水草地、木栈道、保留桩基和高位避水桥",
+      "biography": "灾后没有填回南岸，把损毁空缺变成留白；纪念、排水和休息共同占据此地。",
+      "control": "议会维护／互助会接驳",
+      "factionId": "F-M",
+      "eventIds": [
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "claimIds": [
+        "F03",
+        "I02",
+        "F05"
+      ],
+      "functionMix": "住5 / 商5 / 工0 / 教10 / 服务80",
+      "buildingRelations": "水边课程与纪念池低密布置；服务点靠高位入口，不堵蓄水口。",
+      "oldNew": "保留旧桩与水痕，新步道采用可替换段；强风季低岸关闭。",
+      "travel": "步行、骑行高位绕行、水上接驳",
+      "leisure": "散步、观鸟、静坐",
+      "behavior": "涨水→潮泥；悼念→花带；避雨→高位小棚",
+      "grammar": "水平水面／极低密／苔绿／主步道连续，草木自发生长",
+      "primaryRoadId": "R10",
+      "referenceIds": [
+        "VENICE",
+        "GDC-SUM"
+      ],
+      "intensity": 1,
+      "contentReserve": "避水平台20×30m，双向高位路，不占蓄水口"
+    },
+    {
+      "id": "D06",
+      "name": "织巷生活区",
+      "english": "WEAVERS QUARTER",
+      "color": "#bd9e88",
+      "since": 1,
+      "polygon": [
+        [
+          170,
+          445
+        ],
+        [
+          600,
+          445
+        ],
+        [
+          610,
+          700
+        ],
+        [
+          360,
+          735
+        ],
+        [
+          155,
+          630
+        ]
+      ],
+      "labelPoint": [
+        365,
+        665
+      ],
+      "areaKm2": 1.8,
+      "population": 23000,
+      "densityPerKm2": 12778,
+      "densityBasis": "设定常住人口/设定面积；不是可玩网格密度或同屏NPC",
+      "economy": "低收入与小店主；机修家庭、手工与照护",
+      "height": "6–24 m",
+      "elevation": "2–5 m",
+      "style": "排屋、共享院落、加建楼梯和连棚",
+      "biography": "工人沿通勤方向自建，洪灾后加高门槛，互助会把雨院变诊所；欲望路径穿过后院。",
+      "control": "议会名义地权／互助会暗面秩序",
+      "factionId": "F-M",
+      "eventIds": [
+        "E02",
+        "E03",
+        "E05"
+      ],
+      "claimIds": [
+        "F02",
+        "F03",
+        "F05",
+        "S01"
+      ],
+      "functionMix": "住60 / 商15 / 工5 / 教10 / 服务10",
+      "buildingRelations": "小学校与诊所对着共享院；沿上班动线有早餐铺，噪声修理靠外缘。",
+      "oldNew": "底层石脚保留，上层轻材加建；邻里协议限制挡光与封院。",
+      "travel": "步行、骑行、班车；晚间后院步道",
+      "leisure": "院落棋局、晾晒、互助餐",
+      "behavior": "晾衣→跨院绳；等诊→门廊椅；修车→磨亮门槛",
+      "grammar": "低矮细碎／最高居住密度／砖红麻灰／主巷可读、屋顶与雨棚自发",
+      "primaryRoadId": "R12",
+      "referenceIds": [
+        "GDC-1",
+        "GDC-SUM"
+      ],
+      "intensity": 3,
+      "contentReserve": "共享院28×32m，两入口，诊疗与居民活动预留"
+    }
+  ],
+  "buildings": [
+    {
+      "id": "B01",
+      "name": "临水住商仓",
+      "districtId": "D01",
+      "since": 0,
+      "function": "二层居住、首层交易与维修",
+      "users": "航民家庭与零售；互助会维修",
+      "oldNew": "旧石墙＋轻屋顶",
+      "spatialRelation": "码头卸货面与弯街入口分开",
+      "claimIds": [
+        "F01",
+        "F03"
+      ],
+      "eventIds": [
+        "E01"
+      ]
+    },
+    {
+      "id": "B02",
+      "name": "井边小课室",
+      "districtId": "D01",
+      "since": 0,
+      "function": "教育与淡水服务",
+      "users": "居民儿童与船工；共享水井",
+      "oldNew": "旧仓内分隔教室",
+      "spatialRelation": "靠井但退开主通行带",
+      "claimIds": [
+        "F01",
+        "F03"
+      ],
+      "eventIds": [
+        "E01"
+      ]
+    },
+    {
+      "id": "B03",
+      "name": "联社机修棚",
+      "districtId": "D02",
+      "since": 1,
+      "function": "工业与技术教学",
+      "users": "工人和学徒；工资与工牌控制",
+      "oldNew": "新桁架包旧轨道",
+      "spatialRelation": "长侧接货路，短侧接生活班车",
+      "claimIds": [
+        "F02",
+        "F03"
+      ],
+      "eventIds": [
+        "E02"
+      ]
+    },
+    {
+      "id": "B04",
+      "name": "北缘工宿",
+      "districtId": "D02",
+      "since": 1,
+      "function": "居住与换班服务",
+      "users": "工人家庭；联社出租",
+      "oldNew": "排屋保留、新加洗衣棚",
+      "spatialRelation": "避开重载转弯，步行连门岗",
+      "claimIds": [
+        "F02",
+        "F03"
+      ],
+      "eventIds": [
+        "E02"
+      ]
+    },
+    {
+      "id": "B05",
+      "name": "堤顶仓单所",
+      "districtId": "D03",
+      "since": 3,
+      "function": "商贸办公与公共办事",
+      "users": "商人、议会与联社",
+      "oldNew": "新石基座与竖塔",
+      "spatialRelation": "公共入口接电车，货运走后场",
+      "claimIds": [
+        "F04",
+        "I01"
+      ],
+      "eventIds": [
+        "E04"
+      ]
+    },
+    {
+      "id": "B06",
+      "name": "坡脚食铺",
+      "districtId": "D03",
+      "since": 3,
+      "function": "低价餐食与维修",
+      "users": "夜班工人与低收入住户",
+      "oldNew": "半埋旧门与可拆雨棚",
+      "spatialRelation": "沿低路成串，不堵闸门坡道",
+      "claimIds": [
+        "F04",
+        "I01"
+      ],
+      "eventIds": [
+        "E04"
+      ]
+    },
+    {
+      "id": "B07",
+      "name": "台地图书庭",
+      "districtId": "D04",
+      "since": 0,
+      "function": "教育与公共阅读",
+      "users": "教师、学生与办事居民",
+      "oldNew": "旧院加新遮廊",
+      "spatialRelation": "朝公共前庭开门，后门接档案搬运",
+      "claimIds": [
+        "F01",
+        "F04"
+      ],
+      "eventIds": [
+        "E01"
+      ]
+    },
+    {
+      "id": "B08",
+      "name": "公署服务住宅",
+      "districtId": "D04",
+      "since": 0,
+      "function": "居住与管理服务",
+      "users": "公职与服务人员",
+      "oldNew": "低密旧石宅",
+      "spatialRelation": "住宅入口背向排队前场",
+      "claimIds": [
+        "F01",
+        "F04"
+      ],
+      "eventIds": [
+        "E01"
+      ]
+    },
+    {
+      "id": "B09",
+      "name": "高位值守棚",
+      "districtId": "D05",
+      "since": 2,
+      "function": "公共维护与避水",
+      "users": "值守者与接驳居民",
+      "oldNew": "轻结构可替换段",
+      "spatialRelation": "两端接高位路，保持蓄水口",
+      "claimIds": [
+        "F03",
+        "I02"
+      ],
+      "eventIds": [
+        "E03"
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "水岸自然教室",
+      "districtId": "D05",
+      "since": 2,
+      "function": "教育、纪念与低密休息",
+      "users": "居民、儿童与园区维护",
+      "oldNew": "桩基遗存加木平台",
+      "spatialRelation": "临步道而不封水面通路",
+      "claimIds": [
+        "F03",
+        "I02"
+      ],
+      "eventIds": [
+        "E03"
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "共享排屋",
+      "districtId": "D06",
+      "since": 1,
+      "function": "居住、手工与小商铺",
+      "users": "工薪家庭；互助会非正式协调",
+      "oldNew": "底层石脚、上层轻材加建",
+      "spatialRelation": "主巷商铺、后院家务，保留欲望路径",
+      "claimIds": [
+        "F02",
+        "F03"
+      ],
+      "eventIds": [
+        "E02"
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "院口照护站",
+      "districtId": "D06",
+      "since": 1,
+      "function": "诊疗、幼教与杂货服务",
+      "users": "照护者、老人和儿童",
+      "oldNew": "雨棚围合旧院",
+      "spatialRelation": "担架入口接外缘路，院口不摆摊",
+      "claimIds": [
+        "F02",
+        "F03"
+      ],
+      "eventIds": [
+        "E02"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "id": "P01",
+      "name": "回声灯塔",
+      "districtId": "D01",
+      "nodeId": "N01",
+      "since": 0,
+      "shape": "斜向海湾的方石基座与窄高灯室",
+      "cause": "航道补给需要远航标记，历次修补保留不同石色",
+      "faction": "灯塔议会",
+      "function": "导航与值守",
+      "symbols": "灯窗为图标，盐蚀和补石为索引，航号为符号",
+      "impact": "围绕值守和等待形成茶铺，灯下广场保持低矮以保视线",
+      "reveal": "沿曲岸先见灯室再见基座；从坡上可回望水面",
+      "eventIds": [
+        "E01"
+      ],
+      "claimIds": [
+        "F01",
+        "S01"
+      ],
+      "referenceIds": [
+        "HAFEN"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": true
+    },
+    {
+      "id": "P02",
+      "name": "潮井旧市",
+      "districtId": "D01",
+      "nodeId": "N02",
+      "since": 0,
+      "shape": "围井的半圆旧仓与活动棚",
+      "cause": "淡水补给和交易汇聚，灾后仓库转为维修与夜市",
+      "faction": "互助会",
+      "function": "交易与修理",
+      "symbols": "井圈和水桶为图标，轮印与钉墙为索引",
+      "impact": "地价下降让小店回流，旧轨被摊位跨用但留通路",
+      "reveal": "沿岸穿棚后见井；从高阶先见围合与人群",
+      "eventIds": [
+        "E01",
+        "E03",
+        "E05"
+      ],
+      "claimIds": [
+        "F01",
+        "F03",
+        "F05",
+        "S01"
+      ],
+      "referenceIds": [
+        "HAFEN"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P03",
+      "name": "双线闸门",
+      "districtId": "D03",
+      "nodeId": "N03",
+      "since": 3,
+      "shape": "上下两道通口与贯穿墙面的潮位尺",
+      "cause": "高堤重建需要联接高位道路和低位生活",
+      "faction": "议会／联社",
+      "function": "换层、检票与水闸控制",
+      "symbols": "双层门洞为图标，水痕和维修痕迹为索引",
+      "impact": "岗亭和候车棚聚集于坡顶，坡脚形成廉价餐食",
+      "reveal": "旧路窄口后抬头见高桥；堤顶接近先见下方旧街",
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04",
+        "S01"
+      ],
+      "referenceIds": [
+        "HAFEN"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": true
+    },
+    {
+      "id": "P04",
+      "name": "高堤交易所",
+      "districtId": "D03",
+      "nodeId": "N04",
+      "since": 3,
+      "shape": "厚石基座上伸出细塔与雨廊",
+      "cause": "租地融资需要办事、仓单和贸易集中点",
+      "faction": "议会",
+      "function": "交易、地权与观察",
+      "symbols": "塔体和长队表达权力，封存旧店门表达改造",
+      "impact": "高层办公室沿安全线出现，服务业向坡脚外溢",
+      "reveal": "沿直街塔体压迫感增强；从台地先看到有序屋顶",
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04",
+        "S01"
+      ],
+      "referenceIds": [
+        "HAFEN"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": true
+    },
+    {
+      "id": "P05",
+      "name": "开口船坞",
+      "districtId": "D02",
+      "nodeId": "N05",
+      "since": 1,
+      "shape": "巨大U形船坞与跨水吊机",
+      "cause": "长船维修与工业扩张需要不受旧港弯岸限制的空间",
+      "faction": "联社",
+      "function": "修造、作业和受控潜入入口",
+      "symbols": "吊机和船壳为图标，油痕和导轨为索引",
+      "impact": "机修工坊围船坞聚集，生活建筑退到作业线外",
+      "reveal": "从货路先见吊臂；从北坡看到船坞整体开口",
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-2"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P06",
+      "name": "停炉纪念壳",
+      "districtId": "D02",
+      "nodeId": "N06",
+      "since": 1,
+      "shape": "停用炉壳旁保留新管线和维修平台",
+      "cause": "灾后西炉停用，联社保留外壳作工种记忆与导航",
+      "faction": "联社",
+      "function": "导航、工种纪念、巡逻观察",
+      "symbols": "炉壳为图标，封管和新补丁表达停用与再用",
+      "impact": "厂门外形成换班小吃与球场，但作业区仍受限",
+      "reveal": "沿厂墙先见烟囱；从水岸看到新旧设备并置",
+      "eventIds": [
+        "E02",
+        "E03"
+      ],
+      "claimIds": [
+        "F02",
+        "F03",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-2"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P07",
+      "name": "台地档案塔",
+      "districtId": "D04",
+      "nodeId": "N07",
+      "since": 0,
+      "shape": "塔与低院落一高一低，门前宽台阶",
+      "cause": "最初公署保存航图，重建后增设租地档案",
+      "faction": "议会",
+      "function": "办事、教育、全城地标",
+      "symbols": "塔轮廓与队列为双线索，层层补石是历史索引",
+      "impact": "纸张与教育服务围院发展，背街供搬运独立接入",
+      "reveal": "上台阶逐渐见塔；从堤顶先看到塔与灯塔夹角",
+      "eventIds": [
+        "E01",
+        "E04"
+      ],
+      "claimIds": [
+        "F01",
+        "F04",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-1"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": true
+    },
+    {
+      "id": "P08",
+      "name": "风向技术学舍",
+      "districtId": "D04",
+      "nodeId": "N08",
+      "since": 1,
+      "shape": "低院落加锯齿采光顶与风向标",
+      "cause": "工业工种需要教育，议会以地换公共教学名额",
+      "faction": "议会／联社",
+      "function": "教育与工种交流",
+      "symbols": "采光顶回应工厂语法，学生座椅和量尺是索引",
+      "impact": "北台住宅增加教师，工人通过长坡往返",
+      "reveal": "庭院绕墙后开阔；北货路转角先见风向标",
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-1"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P09",
+      "name": "留白水闸",
+      "districtId": "D05",
+      "nodeId": "N09",
+      "since": 2,
+      "shape": "低矮水闸连接高位栈桥与草坡",
+      "cause": "灾后保留蓄水地，需要可控水位与安全跨越",
+      "faction": "议会维护／互助接驳",
+      "function": "蓄水、跨区慢行与观潮",
+      "symbols": "水线与闸槽表达功能，救生梯是可供性索引",
+      "impact": "边缘形成少量值守和接驳点，中央保持低密度",
+      "reveal": "从工业区出墙进入空旷；从住宅方向先听水再见闸",
+      "eventIds": [
+        "E03"
+      ],
+      "claimIds": [
+        "F03",
+        "S01"
+      ],
+      "referenceIds": [
+        "VENICE"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P10",
+      "name": "无声潮池",
+      "districtId": "D05",
+      "nodeId": "N10",
+      "since": 2,
+      "shape": "退潮池与倒影柱，柱上有同高缺口",
+      "cause": "居民纪念灾难并保留低地潮汐记忆",
+      "faction": "互助会",
+      "function": "纪念、休息与回望",
+      "symbols": "缺口为索引，倒影柱为图标；文字仅补充姓名",
+      "impact": "花摊与休息座位在外圈，中央不放强制战斗",
+      "reveal": "从人声密巷经过低棚再显水面；从闸桥缓下望柱",
+      "eventIds": [
+        "E03"
+      ],
+      "claimIds": [
+        "F03",
+        "S01"
+      ],
+      "referenceIds": [
+        "VENICE"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P11",
+      "name": "共织修理院",
+      "districtId": "D06",
+      "nodeId": "N11",
+      "since": 1,
+      "shape": "多层连棚围共享院，门槛保留高差",
+      "cause": "工人自建院落，灾后把维修组织为共享服务",
+      "faction": "互助会",
+      "function": "维修、聚餐与邻里入口",
+      "symbols": "工具墙与磨亮门槛表达服务，绳结为身份符号",
+      "impact": "修车早餐与临时教室围院，后院欲望路径串街",
+      "reveal": "主巷从窄到宽见工具墙；后巷从晾衣缝进入院落",
+      "eventIds": [
+        "E02",
+        "E03",
+        "E05"
+      ],
+      "claimIds": [
+        "F02",
+        "F03",
+        "F05",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-1"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    },
+    {
+      "id": "P12",
+      "name": "雨院诊所",
+      "districtId": "D06",
+      "nodeId": "N12",
+      "since": 4,
+      "shape": "屋顶集雨槽围出明亮门廊",
+      "cause": "公共医疗缺口推动互助会改造旧雨院",
+      "faction": "互助会",
+      "function": "诊疗、雨水储备与慢行节点",
+      "symbols": "药箱图标、候诊椅与洁净水桶索引",
+      "impact": "杂货与照护服务聚集，院口必须给担架留通道",
+      "reveal": "穿居民棚廊见亮院；从堤坡先见集雨顶再到门廊",
+      "eventIds": [
+        "E05"
+      ],
+      "claimIds": [
+        "F05",
+        "S01"
+      ],
+      "referenceIds": [
+        "GDC-1"
+      ],
+      "capacity": "入口至少两方向；任务占地与人群容量待引擎验证",
+      "entry": "以同名路网节点表示入口；地图为拓扑规划，不证明室内可玩",
+      "landmark": false
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N01",
+      "name": "回声灯塔",
+      "x": 160,
+      "y": 240,
+      "since": 0
+    },
+    {
+      "id": "N02",
+      "name": "潮井旧市",
+      "x": 300,
+      "y": 320,
+      "since": 0
+    },
+    {
+      "id": "N03",
+      "name": "双线闸门",
+      "x": 440,
+      "y": 300,
+      "since": 3
+    },
+    {
+      "id": "N04",
+      "name": "高堤交易所",
+      "x": 590,
+      "y": 250,
+      "since": 3
+    },
+    {
+      "id": "N05",
+      "name": "开口船坞",
+      "x": 800,
+      "y": 290,
+      "since": 1
+    },
+    {
+      "id": "N06",
+      "name": "停炉纪念壳",
+      "x": 940,
+      "y": 360,
+      "since": 1
+    },
+    {
+      "id": "N07",
+      "name": "台地档案塔",
+      "x": 480,
+      "y": 130,
+      "since": 0
+    },
+    {
+      "id": "N08",
+      "name": "风向技术学舍",
+      "x": 740,
+      "y": 110,
+      "since": 1
+    },
+    {
+      "id": "N09",
+      "name": "留白水闸",
+      "x": 800,
+      "y": 570,
+      "since": 2
+    },
+    {
+      "id": "N10",
+      "name": "无声潮池",
+      "x": 650,
+      "y": 620,
+      "since": 2
+    },
+    {
+      "id": "N11",
+      "name": "共织修理院",
+      "x": 300,
+      "y": 560,
+      "since": 1
+    },
+    {
+      "id": "N12",
+      "name": "雨院路口",
+      "x": 500,
+      "y": 520,
+      "since": 1
+    }
+  ],
+  "roads": [
+    {
+      "id": "R01",
+      "name": "系船石街",
+      "fromNodeId": "N01",
+      "toNodeId": "N02",
+      "since": 0,
+      "retired": null,
+      "points": [
+        [
+          160,
+          240
+        ],
+        [
+          300,
+          320
+        ]
+      ],
+      "lengthM": 322.5,
+      "widthM": 4,
+      "modes": [
+        "walk"
+      ],
+      "age": "old",
+      "origin": "自然沿岸形成",
+      "description": "弯岸与交易门面塑造旧路；维修棚保留1.8m通行带",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E01"
+      ],
+      "claimIds": [
+        "F01"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R02",
+      "name": "潮尺坡道",
+      "fromNodeId": "N02",
+      "toNodeId": "N03",
+      "since": 3,
+      "retired": null,
+      "points": [
+        [
+          300,
+          320
+        ],
+        [
+          440,
+          300
+        ]
+      ],
+      "lengthM": 282.8,
+      "widthM": 8,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "灾后规划",
+      "description": "新坡道跨越旧门槛，双层入口表达地权边界",
+      "delaySeconds": 12,
+      "permit": null,
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R03",
+      "name": "高堤大道",
+      "fromNodeId": "N03",
+      "toNodeId": "N04",
+      "since": 3,
+      "retired": null,
+      "points": [
+        [
+          440,
+          300
+        ],
+        [
+          590,
+          250
+        ]
+      ],
+      "lengthM": 316.2,
+      "widthM": 18,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "议会规划",
+      "description": "高位直路与统一拱廊；低位旧路并行",
+      "delaySeconds": 4,
+      "permit": null,
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R04",
+      "name": "货运连廊",
+      "fromNodeId": "N04",
+      "toNodeId": "N05",
+      "since": 3,
+      "retired": null,
+      "points": [
+        [
+          590,
+          250
+        ],
+        [
+          800,
+          290
+        ]
+      ],
+      "lengthM": 427.6,
+      "widthM": 14,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "港务规划",
+      "description": "受保护的步行边带连接新堤和船坞",
+      "delaySeconds": 6,
+      "permit": null,
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R05",
+      "name": "班铃直路",
+      "fromNodeId": "N05",
+      "toNodeId": "N06",
+      "since": 1,
+      "retired": null,
+      "points": [
+        [
+          800,
+          290
+        ],
+        [
+          940,
+          360
+        ]
+      ],
+      "lengthM": 313.0,
+      "widthM": 16,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "工业规划",
+      "description": "长直厂墙与货运转弯面定义工业边界",
+      "delaySeconds": 8,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R06",
+      "name": "档案长坡",
+      "fromNodeId": "N04",
+      "toNodeId": "N07",
+      "since": 3,
+      "retired": null,
+      "points": [
+        [
+          590,
+          250
+        ],
+        [
+          545,
+          170
+        ],
+        [
+          480,
+          130
+        ]
+      ],
+      "lengthM": 336.2,
+      "widthM": 10,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "高差补接",
+      "description": "缓坡绕开旧台阶；地图只表达连接，真实坡度待引擎验证",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R07",
+      "name": "风向院街",
+      "fromNodeId": "N07",
+      "toNodeId": "N08",
+      "since": 1,
+      "retired": null,
+      "points": [
+        [
+          480,
+          130
+        ],
+        [
+          740,
+          110
+        ]
+      ],
+      "lengthM": 521.5,
+      "widthM": 8,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "沿地形规划",
+      "description": "低院落让出塔体视线；后期教学门向此开",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R08",
+      "name": "学徒后门路",
+      "fromNodeId": "N08",
+      "toNodeId": "N05",
+      "since": 1,
+      "retired": null,
+      "points": [
+        [
+          740,
+          110
+        ],
+        [
+          800,
+          290
+        ]
+      ],
+      "lengthM": 379.5,
+      "widthM": 8,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "工业接驳",
+      "description": "需联社通行许可；学徒与换班人流从北缘接入",
+      "delaySeconds": 15,
+      "permit": "port",
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R09",
+      "name": "厂外缓行路",
+      "fromNodeId": "N06",
+      "toNodeId": "N09",
+      "since": 2,
+      "retired": null,
+      "points": [
+        [
+          940,
+          360
+        ],
+        [
+          800,
+          570
+        ]
+      ],
+      "lengthM": 504.8,
+      "widthM": 10,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "灾后规划",
+      "description": "停炉外墙变成去水岸的转折，重载交通不进入",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E03"
+      ],
+      "claimIds": [
+        "F03"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R10",
+      "name": "潮汐高栈道",
+      "fromNodeId": "N09",
+      "toNodeId": "N10",
+      "since": 2,
+      "retired": null,
+      "points": [
+        [
+          800,
+          570
+        ],
+        [
+          650,
+          620
+        ]
+      ],
+      "lengthM": 316.2,
+      "widthM": 6,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "避水规划",
+      "description": "低位水岸保留、通行走高位；草坡降低强度",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E03"
+      ],
+      "claimIds": [
+        "F03"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R11",
+      "name": "回望水岸",
+      "fromNodeId": "N10",
+      "toNodeId": "N12",
+      "since": 4,
+      "retired": null,
+      "points": [
+        [
+          650,
+          620
+        ],
+        [
+          500,
+          520
+        ]
+      ],
+      "lengthM": 360.6,
+      "widthM": 6,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "居民协商规划",
+      "description": "从纪念池回望旧城，避开担架入口预留",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E05"
+      ],
+      "claimIds": [
+        "F05"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R12",
+      "name": "连棚生活巷",
+      "fromNodeId": "N12",
+      "toNodeId": "N11",
+      "since": 1,
+      "retired": null,
+      "points": [
+        [
+          500,
+          520
+        ],
+        [
+          300,
+          560
+        ]
+      ],
+      "lengthM": 407.9,
+      "widthM": 6,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "居民自然形成",
+      "description": "自建排屋收窄巷道，门廊活动与慢行共用",
+      "delaySeconds": 5,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R13",
+      "name": "织工旧路",
+      "fromNodeId": "N11",
+      "toNodeId": "N02",
+      "since": 1,
+      "retired": null,
+      "points": [
+        [
+          300,
+          560
+        ],
+        [
+          205,
+          455
+        ],
+        [
+          300,
+          320
+        ]
+      ],
+      "lengthM": 613.3,
+      "widthM": 8,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "通勤自然形成",
+      "description": "住工之间的老通勤线，早晚峰小店沿路生长",
+      "delaySeconds": 5,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R14",
+      "name": "雨院上堤坡",
+      "fromNodeId": "N12",
+      "toNodeId": "N03",
+      "since": 3,
+      "retired": null,
+      "points": [
+        [
+          500,
+          520
+        ],
+        [
+          440,
+          300
+        ]
+      ],
+      "lengthM": 456.1,
+      "widthM": 8,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "公共服务补接",
+      "description": "担架与骑行共用坡道，台阶另设不进主图",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E04"
+      ],
+      "claimIds": [
+        "F04"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R15",
+      "name": "公署石阶",
+      "fromNodeId": "N02",
+      "toNodeId": "N07",
+      "since": 0,
+      "retired": null,
+      "points": [
+        [
+          300,
+          320
+        ],
+        [
+          355,
+          225
+        ],
+        [
+          480,
+          130
+        ]
+      ],
+      "lengthM": 533.6,
+      "widthM": 4,
+      "modes": [
+        "walk"
+      ],
+      "age": "old",
+      "origin": "沿北坡规划",
+      "description": "旧阶梯保留，不可骑行；邻接长坡提供不同体验",
+      "delaySeconds": 18,
+      "permit": null,
+      "eventIds": [
+        "E01"
+      ],
+      "claimIds": [
+        "F01"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R16",
+      "name": "互助堤脚路",
+      "fromNodeId": "N12",
+      "toNodeId": "N09",
+      "since": 4,
+      "retired": null,
+      "points": [
+        [
+          500,
+          520
+        ],
+        [
+          800,
+          570
+        ]
+      ],
+      "lengthM": 608.3,
+      "widthM": 6,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "new",
+      "origin": "居民欲望路径转公共维护",
+      "description": "诊所与水闸的低位服务路，桥段须引擎补验净高",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E05"
+      ],
+      "claimIds": [
+        "F05"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R17",
+      "name": "已失效东湾货轨",
+      "fromNodeId": "N02",
+      "toNodeId": "N05",
+      "since": 1,
+      "retired": 3,
+      "points": [
+        [
+          300,
+          320
+        ],
+        [
+          800,
+          290
+        ]
+      ],
+      "lengthM": 1001.8,
+      "widthM": 12,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "联社早期货运",
+      "description": "原沿岸货轨，筑高堤后退出主路；断轨保留在旧市",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    },
+    {
+      "id": "R18",
+      "name": "南岸旧班车道",
+      "fromNodeId": "N11",
+      "toNodeId": "N06",
+      "since": 1,
+      "retired": 2,
+      "points": [
+        [
+          300,
+          560
+        ],
+        [
+          940,
+          360
+        ]
+      ],
+      "lengthM": 1341.0,
+      "widthM": 10,
+      "modes": [
+        "walk",
+        "bike"
+      ],
+      "age": "old",
+      "origin": "工业通勤",
+      "description": "244年风暴毁坏南段，此后不作为可通行道路",
+      "delaySeconds": 0,
+      "permit": null,
+      "eventIds": [
+        "E02"
+      ],
+      "claimIds": [
+        "F02"
+      ],
+      "buffer": "两侧各0.6m陈设带为初步预算；额外障碍与人群需实测",
+      "bidirectional": true
+    }
+  ],
+  "transit": [
+    {
+      "id": "TR01",
+      "name": "高堤电车",
+      "since": 3,
+      "operator": "议会特许／联社维护",
+      "cause": "高堤重建后贸易与办事客流集中",
+      "nodeIds": [
+        "N03",
+        "N04",
+        "N05"
+      ],
+      "roadIds": [
+        "R03",
+        "R04"
+      ],
+      "service": "06:00–23:00",
+      "peak": "07:00–09:00、17:00–19:00；预测单向900人次/h",
+      "offPeak": "11:00–15:00；预测单向250人次/h",
+      "headwayMinutes": 4,
+      "offPeakHeadwayMinutes": 10,
+      "capacity": 90,
+      "travelSeconds": 240,
+      "waitingModel": "随机均匀到站，期望等候=班距/2；高峰总估算=120+240=360秒",
+      "basis": "原创需求假设，非客流模拟或实测"
+    },
+    {
+      "id": "TR02",
+      "name": "低岸接驳船",
+      "since": 4,
+      "operator": "潮线互助会",
+      "cause": "低岸慢行与居民服务接入高堤交通",
+      "nodeIds": [
+        "N02",
+        "N09"
+      ],
+      "roadIds": [],
+      "service": "07:00–21:00；风暴停航",
+      "peak": "清晨07:00–08:30，傍晚18:00–20:00；预测单向120人次/h",
+      "offPeak": "午间；预测单向30人次/h",
+      "headwayMinutes": 12,
+      "offPeakHeadwayMinutes": 20,
+      "capacity": 30,
+      "travelSeconds": 300,
+      "waitingModel": "随机到站平均6分钟，高峰总估算=360+300=660秒；天气不确定不计入",
+      "basis": "原创需求假设；仅为水上连线，不参与陆路寻路"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "X01",
+      "name": "街宽单变量通行实验",
+      "status": "not_run",
+      "question": "固定道具与角色，4/6/8m宽度怎样影响碰撞和通过？",
+      "variable": "streetWidthM",
+      "variants": [
+        4,
+        6,
+        8
+      ],
+      "constants": "180m切片、半径0.35m、速度4.5m/s、眼高1.65m、FOV70°、同一维修障碍",
+      "targets": "净通道连续；完成且记录碰撞与主观压迫感；阈值由真实玩家对照后确认",
+      "method": "可交互参数表用于比较假设净宽；实际操控、碰撞与视野须在目标引擎执行。",
+      "observations": [],
+      "limitations": "文档不实现角色移动或碰撞；净宽与ETA只是公式估算，不是白盒实验结果。"
+    },
+    {
+      "id": "X02",
+      "name": "跨城区切片连续移动",
+      "status": "not_run",
+      "question": "旧港→高堤→炉湾→水岸→织巷在真实角色中是否连续？",
+      "variable": "district_slice",
+      "variants": [
+        "低屋顶",
+        "堤坡高差",
+        "工业障碍",
+        "开阔水岸"
+      ],
+      "constants": "同一角色、镜头、代表性道具与一项配送任务",
+      "targets": "记录失败与恢复，至少一次双向连续录像；数值阈值待机制确定",
+      "method": "目标引擎中串联切片并记录",
+      "observations": [],
+      "limitations": "H5地图、ETA和街道切片不能关闭此项"
+    },
+    {
+      "id": "X03",
+      "name": "地标有限视野与双线索",
+      "status": "not_run",
+      "question": "两个进入方向能否识别灯塔、堤闸、档案塔与阵营边界？",
+      "variable": "approach_direction",
+      "variants": [
+        "低岸",
+        "高堤"
+      ],
+      "constants": "相机FOV与任务提示不变",
+      "targets": "新手导航错误、首次看见位置与理解方式；至少5名为项目建议而非GDC样本",
+      "method": "引擎站位截图＋玩家口述与连续录像",
+      "observations": [],
+      "limitations": "地图示意不能证明全城可见性；需真实镜头站位和玩家理解测试。"
+    },
+    {
+      "id": "X04",
+      "name": "交通与流式平台预算",
+      "status": "not_run",
+      "question": "最快移动、人群和内容并存时平台是否稳定？",
+      "variable": "density_or_streaming_budget",
+      "variants": [
+        "理想",
+        "降级"
+      ],
+      "constants": "固定路线、任务、平台、构建版本",
+      "targets": "建议60fps/最低30fps须用户确认；记录帧时间、内存和加载尖峰",
+      "method": "目标设备性能记录＋交通交叉口回放",
+      "observations": [],
+      "limitations": "道路度数检查不等于AI或引擎测试"
+    }
+  ],
+  "review": {
+    "productionGate": "not_approved",
+    "reason": "引擎移动、玩家理解、跨区内容、交通与平台测试尚未完成。",
+    "gates": [
+      {
+        "id": "G01",
+        "name": "目标与输入",
+        "status": "passed",
+        "evidence": "brief、assumptions、openQuestions；只对原创演示范围成立"
+      },
+      {
+        "id": "G02",
+        "name": "身份与尺度",
+        "status": "not_run",
+        "evidence": "骨架与距离模型已建立，受控引擎实验及站位尚未完成"
+      },
+      {
+        "id": "G03",
+        "name": "移动与视角",
+        "status": "not_run",
+        "evidence": "X01–X03均为待执行实验；文档交互不构成玩家或引擎验证。"
+      },
+      {
+        "id": "G04",
+        "name": "关键理解",
+        "status": "not_run",
+        "evidence": "双线索设计已写，真实玩家理解未测"
+      },
+      {
+        "id": "G05",
+        "name": "内容与技术",
+        "status": "not_run",
+        "evidence": "空间预留和回退已写，X04及内容实测缺失"
+      },
+      {
+        "id": "G06",
+        "name": "证据完整性",
+        "status": "passed",
+        "evidence": "声明分类与引用由脚本校验，设计推导另需人工审查"
+      }
+    ],
+    "fallback": "优先缩减东北填充与远景、非核心人群；保护灯塔—高堤—档案塔和绕行，降低密度后重测。"
+  }
+}

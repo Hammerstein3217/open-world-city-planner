@@ -1,0 +1,4 @@
+interface:
+  display_name: "开放世界城市规划"
+  short_description: "从世界观与拓扑推演城市演变、城区与动线，并用可追溯证据验证白盒"
+  default_prompt: "使用 $open-world-city-planner，根据我的世界观和城市轮廓设计城市规划，并交付带证据链的交互文档和白盒验证计划。"

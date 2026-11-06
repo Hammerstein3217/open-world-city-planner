@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-06",
+  "repository": "https://github.com/Hammerstein3217/open-world-city-planner",
+  "license": "MIT",
+  "originalUserAttachmentIncluded": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 66,
+      "sha256": "f81ab0d59b2ca311630ed1d7e23bd58fbeff3ee7ae70eaa06e339dcd2efbfb98"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1073,
+      "sha256": "a5d4eb8fba3689980e24906fd39e13076af984643c9f05190b54cdf5e3bdcece"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5869,
+      "sha256": "6378dd45454fca2d5ff5abda98a706d7c83fcac5300c6329cb1616c7d6e52f88"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1492,
+      "sha256": "fadbf1b1ecfc7ef6f3db35da9d54141aceafca084e12743b523a2480481be862"
+    },
+    {
+      "path": "USAGE.md",
+      "bytes": 9801,
+      "sha256": "aa9aa99e6bec9b0f599f5f238859e33183440cf509054d5b27c45dd069643d04"
+    },
+    {
+      "path": "demo/city.json",
+      "bytes": 69511,
+      "sha256": "b8d5974239cbe878ccd73a58a601437154fd911ff815e411a5bb067961fdf9e1"
+    },
+    {
+      "path": "demo/index.html",
+      "bytes": 124823,
+      "sha256": "2bfa5d7a9bdb5c8ce9f2f04ff238b6ddbaf1eee4677aa39190d0607ae63975f5"
+    },
+    {
+      "path": "demo/planning-review.md",
+      "bytes": 3951,
+      "sha256": "4c161c98b286d63c4054b719e9597ad1a2725eb6fd37deefd35acf4c1d71c2e6"
+    },
+    {
+      "path": "demo/worldbuilding.md",
+      "bytes": 1867,
+      "sha256": "f1da7b50f741f3285b12b4e76e4e1111df9ef183aa4919469a74d0ff1a652c27"
+    },
+    {
+      "path": "skills/open-world-city-planner/SKILL.md",
+      "bytes": 6171,
+      "sha256": "82b9a9c38cbf9cb78be3e131e52d186eadc04d55039ffec881ae8fba721d0977"
+    },
+    {
+      "path": "skills/open-world-city-planner/agents/openai.yaml",
+      "bytes": 343,
+      "sha256": "eb069467e46069aa1bf5f2c9f317bac60188508f9812b68f57fd83d3e2f0e4c6"
+    },
+    {
+      "path": "skills/open-world-city-planner/assets/atlas-template.html",
+      "bytes": 67086,
+      "sha256": "19d75d0ac97c01d6018011123e246d0fa21c7f755ee6ce1ff35f39d2d6ebccc0"
+    },
+    {
+      "path": "skills/open-world-city-planner/assets/design-templates.md",
+      "bytes": 1979,
+      "sha256": "73eb97d55c8145a0e6adaa628227475a18e4be70388ae1c9d617e94e235c8c9f"
+    },
+    {
+      "path": "skills/open-world-city-planner/assets/intake-template.md",
+      "bytes": 862,
+      "sha256": "6b9592f3a2bd7c3c86e6c9a25b04d025d7cdde215c546b757922d405d355b252"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/city.schema.json",
+      "bytes": 29563,
+      "sha256": "5be1e48455b1e412a2c94e8209efb9fc66690705dd8e79c26d995ad1e5270853"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/data-contract.md",
+      "bytes": 3868,
+      "sha256": "cab1966da2845ecd6267ee5d045cf71f72d9cb02e89bf94cc9987338991a03c1"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/gdc-method-map.md",
+      "bytes": 2630,
+      "sha256": "155d6bd6e5022f976f61f2e7465c0626b25403c996fb21dda799f8eb2caadb89"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/gdc-user-summary.md",
+      "bytes": 2875,
+      "sha256": "5251f7ae1abc30013a54d40477a3c1808acdc192911fbc8d84ef5b4bed0d9d17"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/intake-and-provenance.md",
+      "bytes": 2679,
+      "sha256": "973db33653ade25eb3b00940dabf04bf72c0de8134ca4c616db76be85be61ffa"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/review-rubric.md",
+      "bytes": 2262,
+      "sha256": "2533d1f831d5134f0cec50d139bae7a1cd60d87ebf8ca9bcc6f3d7ded97bf80d"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/whitebox-validation.md",
+      "bytes": 2825,
+      "sha256": "40a84f2770e2989ce1aa3c08d77967422ded77e1e838c0cc02c619cbe6e263b4"
+    },
+    {
+      "path": "skills/open-world-city-planner/references/workflow.md",
+      "bytes": 2633,
+      "sha256": "712664846763f44e60968e4eb1a2f1213ee6803a549dfabad1d24eed02dae5f5"
+    },
+    {
+      "path": "skills/open-world-city-planner/scripts/build_demo.py",
+      "bytes": 2333,
+      "sha256": "22bdea59cc253aee0c1db5bab38f86e2bc2fb46f8ebf6e65761c143704c698a8"
+    },
+    {
+      "path": "skills/open-world-city-planner/scripts/validate_city.py",
+      "bytes": 12660,
+      "sha256": "b78d2d69891097ae66554d4e81a6fd9294bd476af97524d361afe7fe8e573f06"
+    },
+    {
+      "path": "validation/check_package.py",
+      "bytes": 4645,
+      "sha256": "7bc0df4d34bf7e97a66a3e9e9d1426c9825a940ed75e530b2f72cff37fb6d9c5"
+    },
+    {
+      "path": "validation/data-report.json",
+      "bytes": 527,
+      "sha256": "26db69d23d8654daf99234e2852882ab2f7c3154fb861cecf11cb33f3b2453a4"
+    },
+    {
+      "path": "validation/document-runtime-report.json",
+      "bytes": 3396,
+      "sha256": "d685d78e69038b4a0ddf3c3fb0fad1ecbd4a7c5adf8b89d70baf959c5baac93b"
+    },
+    {
+      "path": "validation/provenance-manifest.json",
+      "bytes": 471,
+      "sha256": "5686028cbb66add4825378d94ab71503e26ba3d48343a84cb3e145dbc9991a00"
+    },
+    {
+      "path": "validation/public-distribution-report.json",
+      "bytes": 330,
+      "sha256": "906c86ddb9de9298982704f0f5206b4494efaf52be08ce47863f5b3bba89021f"
+    },
+    {
+      "path": "validation/skill-behavior-cases.md",
+      "bytes": 2233,
+      "sha256": "4bd9de60ce8fc8f0cca1c3ca52c19a4c36fba5d91e1cac27b35d39cc44201487"
+    },
+    {
+      "path": "validation/skill-structure-report.json",
+      "bytes": 3253,
+      "sha256": "543df31e1d4158037fbcfa810bf7423d2e5fcb661f83d5374ea35ea9972c8d26"
+    },
+    {
+      "path": "validation/test_document_runtime.cjs",
+      "bytes": 11328,
+      "sha256": "41c23d4908001315a8c4f3b08bd2c49c06a353c22404b60741aec08cbaa41fd0"
+    },
+    {
+      "path": "validation/test_invariants.py",
+      "bytes": 3964,
+      "sha256": "bbf74e5f4f8e7cc465b855ddadea917d6aa71d5502c5d69345b51714a61660c9"
+    },
+    {
+      "path": "validation/verification-report.md",
+      "bytes": 4226,
+      "sha256": "b0892b0aad1e468ad8734fdc69d300d4c551b93ffe37a8a22c6c2f0c04d8612d"
+    }
+  ],
+  "standaloneDocumentSha256": "2bfa5d7a9bdb5c8ce9f2f04ff238b6ddbaf1eee4677aa39190d0607ae63975f5"
+}

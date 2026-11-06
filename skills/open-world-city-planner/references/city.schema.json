@@ -1,0 +1,1434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:open-world-city-planner:city:1",
+  "title": "Open-world city planning document v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "planningStatus": {
+      "enum": [
+        "reviewable_not_engine_approved",
+        "engine_approved",
+        "provisional"
+      ]
+    },
+    "coordinateSystem": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number",
+          "minimum": 1
+        },
+        "height": {
+          "type": "number",
+          "minimum": 1
+        },
+        "metersPerUnit": {
+          "type": "number",
+          "minimum": 1e-05
+        },
+        "north": {
+          "enum": [
+            "up"
+          ]
+        },
+        "units": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verticalDatum": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "metersPerUnit",
+        "north",
+        "units",
+        "verticalDatum"
+      ],
+      "additionalProperties": false
+    },
+    "brief": {
+      "$ref": "#/$defs/brief"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "impact": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "impact"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2"
+            ]
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blocks": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "priority",
+          "question",
+          "blocks",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "productionGate": {
+          "enum": [
+            "not_approved",
+            "approved"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/gate"
+          },
+          "minItems": 1
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "productionGate",
+        "reason",
+        "gates",
+        "fallback"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "minItems": 1
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "minItems": 1
+    },
+    "eras": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/era"
+      },
+      "minItems": 1
+    },
+    "factions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/faction"
+      },
+      "minItems": 1
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      },
+      "minItems": 1
+    },
+    "districts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/district"
+      },
+      "minItems": 1
+    },
+    "buildings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/building"
+      },
+      "minItems": 0
+    },
+    "pois": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/poi"
+      },
+      "minItems": 1
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      },
+      "minItems": 1
+    },
+    "roads": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/road"
+      },
+      "minItems": 1
+    },
+    "transit": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transit"
+      },
+      "minItems": 0
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/experiment"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "subtitle",
+    "language",
+    "version",
+    "planningStatus",
+    "coordinateSystem",
+    "brief",
+    "assumptions",
+    "openQuestions",
+    "review",
+    "sources",
+    "claims",
+    "eras",
+    "factions",
+    "events",
+    "districts",
+    "buildings",
+    "pois",
+    "nodes",
+    "roads",
+    "transit",
+    "experiments"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "point": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "brief": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "fiction_demo",
+            "provisional",
+            "confirmed"
+          ]
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gameplay": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "conflictRule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisionOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "settingAreaKm2": {
+          "type": "number",
+          "minimum": 0.001
+        },
+        "playableAreaKm2": {
+          "type": "number",
+          "minimum": 0.001
+        },
+        "population": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "populationNote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deliverable": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "mode",
+        "theme",
+        "gameplay",
+        "priority",
+        "conflictRule",
+        "decisionOwner",
+        "identity",
+        "settingAreaKm2",
+        "playableAreaKm2",
+        "population",
+        "populationNote",
+        "deliverable"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "user",
+            "attachment",
+            "official",
+            "fiction",
+            "research",
+            "measurement"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checkedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checkedScope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1
+        },
+        "designUse": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "url",
+        "locator",
+        "checkedAt",
+        "checkedScope",
+        "limitations",
+        "designUse"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "kind": {
+          "enum": [
+            "user_given",
+            "attachment_summary",
+            "original_verified",
+            "inference",
+            "fictional",
+            "measurement"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 0
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "measurementEvidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "text",
+        "sourceIds",
+        "locator",
+        "premises",
+        "reasoning",
+        "confidence"
+      ],
+      "additionalProperties": false
+    },
+    "era": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "index",
+        "year",
+        "name",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "faction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "color": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "publicRole": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control": {
+          "type": "string",
+          "minLength": 1
+        },
+        "covert": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2
+        },
+        "districtIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "color",
+        "publicRole",
+        "control",
+        "covert",
+        "visual",
+        "districtIds",
+        "claimIds"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "era": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resources": {
+          "type": "string",
+          "minLength": 1
+        },
+        "constraints": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "migration": {
+          "type": "string",
+          "minLength": 1
+        },
+        "spatialDelta": {
+          "type": "string",
+          "minLength": 1
+        },
+        "residue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "playerEffect": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "affectedDistrictIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "counterfactual": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "era",
+        "trigger",
+        "actor",
+        "resources",
+        "constraints",
+        "decision",
+        "migration",
+        "spatialDelta",
+        "residue",
+        "playerEffect",
+        "dependsOn",
+        "affectedDistrictIds",
+        "claimIds",
+        "counterfactual",
+        "validation"
+      ],
+      "additionalProperties": false
+    },
+    "district": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "english": {
+          "type": "string",
+          "minLength": 1
+        },
+        "color": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "polygon": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          },
+          "minItems": 3
+        },
+        "labelPoint": {
+          "$ref": "#/$defs/point"
+        },
+        "areaKm2": {
+          "type": "number",
+          "minimum": 0.001
+        },
+        "population": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "densityPerKm2": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "densityBasis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "economy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "height": {
+          "type": "string",
+          "minLength": 1
+        },
+        "elevation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "biography": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control": {
+          "type": "string",
+          "minLength": 1
+        },
+        "factionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eventIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "functionMix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "buildingRelations": {
+          "type": "string",
+          "minLength": 1
+        },
+        "oldNew": {
+          "type": "string",
+          "minLength": 1
+        },
+        "travel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "leisure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "behavior": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grammar": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primaryRoadId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "intensity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "contentReserve": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "english",
+        "color",
+        "since",
+        "polygon",
+        "labelPoint",
+        "areaKm2",
+        "population",
+        "densityPerKm2",
+        "densityBasis",
+        "economy",
+        "height",
+        "elevation",
+        "style",
+        "biography",
+        "control",
+        "factionId",
+        "eventIds",
+        "claimIds",
+        "functionMix",
+        "buildingRelations",
+        "oldNew",
+        "travel",
+        "leisure",
+        "behavior",
+        "grammar",
+        "primaryRoadId",
+        "referenceIds",
+        "intensity",
+        "contentReserve"
+      ],
+      "additionalProperties": false
+    },
+    "building": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "districtId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "function": {
+          "type": "string",
+          "minLength": 1
+        },
+        "users": {
+          "type": "string",
+          "minLength": 1
+        },
+        "oldNew": {
+          "type": "string",
+          "minLength": 1
+        },
+        "spatialRelation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "eventIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "districtId",
+        "since",
+        "function",
+        "users",
+        "oldNew",
+        "spatialRelation",
+        "claimIds",
+        "eventIds"
+      ],
+      "additionalProperties": false
+    },
+    "poi": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "districtId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shape": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "faction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "function": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbols": {
+          "type": "string",
+          "minLength": 1
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reveal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eventIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "referenceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "capacity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entry": {
+          "type": "string",
+          "minLength": 1
+        },
+        "landmark": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "districtId",
+        "nodeId",
+        "since",
+        "shape",
+        "cause",
+        "faction",
+        "function",
+        "symbols",
+        "impact",
+        "reveal",
+        "eventIds",
+        "claimIds",
+        "referenceIds",
+        "capacity",
+        "entry",
+        "landmark"
+      ],
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "x": {
+          "type": "number",
+          "minimum": 0
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "x",
+        "y",
+        "since"
+      ],
+      "additionalProperties": false
+    },
+    "road": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fromNodeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "toNodeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retired": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          },
+          "minItems": 2
+        },
+        "lengthM": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "widthM": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "walk",
+              "bike"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "age": {
+          "enum": [
+            "old",
+            "new"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delaySeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "permit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "buffer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bidirectional": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "fromNodeId",
+        "toNodeId",
+        "since",
+        "retired",
+        "points",
+        "lengthM",
+        "widthM",
+        "modes",
+        "age",
+        "origin",
+        "description",
+        "delaySeconds",
+        "permit",
+        "eventIds",
+        "claimIds",
+        "buffer",
+        "bidirectional"
+      ],
+      "additionalProperties": false
+    },
+    "transit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "since": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "operator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2
+        },
+        "roadIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "peak": {
+          "type": "string",
+          "minLength": 1
+        },
+        "offPeak": {
+          "type": "string",
+          "minLength": 1
+        },
+        "headwayMinutes": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "offPeakHeadwayMinutes": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "travelSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "waitingModel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "since",
+        "operator",
+        "cause",
+        "nodeIds",
+        "roadIds",
+        "service",
+        "peak",
+        "offPeak",
+        "headwayMinutes",
+        "offPeakHeadwayMinutes",
+        "capacity",
+        "travelSeconds",
+        "waitingModel",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "experiment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "accepted_risk"
+          ]
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number"
+            ]
+          },
+          "minItems": 1
+        },
+        "constants": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targets": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "minItems": 0
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "status",
+        "question",
+        "variable",
+        "variants",
+        "constants",
+        "targets",
+        "method",
+        "observations",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "accepted_risk"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "status",
+        "evidence"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

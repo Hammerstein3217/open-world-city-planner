@@ -1,0 +1,140 @@
+{
+  "method": "Node vm + minimal DOM model; no browser or layout engine",
+  "passed": true,
+  "count": 32,
+  "checks": [
+    {
+      "name": "document initializes without runtime error",
+      "passed": true
+    },
+    {
+      "name": "current map contains 6 districts, 16 roads and 12 POI",
+      "passed": true
+    },
+    {
+      "name": "district index initializes",
+      "passed": true
+    },
+    {
+      "name": "district selection updates dossier",
+      "passed": true
+    },
+    {
+      "name": "district selection synchronizes life chapter",
+      "passed": true
+    },
+    {
+      "name": "POI index shows all twelve",
+      "passed": true
+    },
+    {
+      "name": "POI dossier includes causal and spatial detail",
+      "passed": true
+    },
+    {
+      "name": "road selection updates dossier",
+      "passed": true
+    },
+    {
+      "name": "timeline changes current era",
+      "passed": true
+    },
+    {
+      "name": "timeline hides POI not yet formed",
+      "passed": true
+    },
+    {
+      "name": "earliest map contains 2 districts, 2 roads and 3 POI",
+      "passed": true
+    },
+    {
+      "name": "routes respect historical existence",
+      "passed": true
+    },
+    {
+      "name": "historical freight road visible before retirement",
+      "passed": true
+    },
+    {
+      "name": "historical freight road disappears after retirement",
+      "passed": true
+    },
+    {
+      "name": "search has readable empty state",
+      "passed": true
+    },
+    {
+      "name": "route uses direct ramp when open",
+      "passed": true
+    },
+    {
+      "name": "closure recomputes a longer legal detour",
+      "passed": true
+    },
+    {
+      "name": "mode restrictions reject unreachable bike route",
+      "passed": true
+    },
+    {
+      "name": "permit enables staff shortcut",
+      "passed": true
+    },
+    {
+      "name": "same origin and destination yields zero route",
+      "passed": true
+    },
+    {
+      "name": "single-variable width budget updates to 2.8m",
+      "passed": true
+    },
+    {
+      "name": "production gates remain unapproved",
+      "passed": true
+    },
+    {
+      "name": "history selection shows full causal chain and alternative",
+      "passed": true
+    },
+    {
+      "name": "faction navigation returns to present snapshot",
+      "passed": true
+    },
+    {
+      "name": "claim link exposes premises and reasoning",
+      "passed": true
+    },
+    {
+      "name": "public GDC method index opens offline",
+      "passed": true
+    },
+    {
+      "name": "original worldbuilding opens offline",
+      "passed": true
+    },
+    {
+      "name": "measurement ledger does not invent observations",
+      "passed": true
+    },
+    {
+      "name": "data export produces parseable city JSON",
+      "passed": true
+    },
+    {
+      "name": "print control invokes document print",
+      "passed": true
+    },
+    {
+      "name": "zoom changes map viewBox",
+      "passed": true
+    },
+    {
+      "name": "map reset restores overview",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No real-browser file opening, visual rendering, screenshot, pointer/keyboard accessibility, print-layout or narrow-screen verification.",
+    "A local file URL was rejected by browser protocol policy; no bypass or alternate browser path was used.",
+    "No game or engine prototype was built; all whitebox experiments remain not_run."
+  ]
+}

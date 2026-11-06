@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "errors": [],
+  "warnings": [
+    "Engine, player-view, vertical traversal, traffic AI and platform tests are not verified by this validator."
+  ],
+  "checks": 148,
+  "counts": {
+    "sources": 7,
+    "claims": 15,
+    "eras": 5,
+    "factions": 3,
+    "events": 5,
+    "districts": 6,
+    "buildings": 12,
+    "pois": 12,
+    "nodes": 12,
+    "roads": 18,
+    "transit": 2,
+    "experiments": 4
+  },
+  "playableAreaKm2Calculated": 1.7971,
+  "cityFile": "outputs/open-world-city-planner/demo/city.json"
+}

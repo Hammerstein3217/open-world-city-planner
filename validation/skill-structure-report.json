@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "method": "Python standard-library structural checks and restricted scalar frontmatter inspection",
+  "checks": [
+    {
+      "name": "SKILL.md has bounded frontmatter",
+      "passed": true
+    },
+    {
+      "name": "frontmatter contains supported scalar key name",
+      "passed": true
+    },
+    {
+      "name": "frontmatter contains supported scalar key description",
+      "passed": true
+    },
+    {
+      "name": "skill naming is valid and matches directory",
+      "passed": true
+    },
+    {
+      "name": "description is nonempty and bounded",
+      "passed": true
+    },
+    {
+      "name": "skill entrypoint has no unfinished scaffolding",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: assets/atlas-template.html",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: assets/design-templates.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: assets/intake-template.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/city.schema.json",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/data-contract.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/gdc-method-map.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/gdc-user-summary.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/intake-and-provenance.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/review-rubric.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/whitebox-validation.md",
+      "passed": true
+    },
+    {
+      "name": "skill resource exists: references/workflow.md",
+      "passed": true
+    },
+    {
+      "name": "UI short description length fits metadata contract",
+      "passed": true
+    },
+    {
+      "name": "default prompt explicitly invokes skill",
+      "passed": true
+    },
+    {
+      "name": "static HTML IDs are unique",
+      "passed": true
+    },
+    {
+      "name": "standalone document has no external resource dependencies",
+      "passed": true
+    },
+    {
+      "name": "document outline anchors resolve",
+      "passed": true
+    },
+    {
+      "name": "embedded city equals source JSON",
+      "passed": true
+    },
+    {
+      "name": "embedded worldbuilding equals original source",
+      "passed": true
+    },
+    {
+      "name": "embedded GDC method index equals public source",
+      "passed": true
+    },
+    {
+      "name": "built document has no remaining build tokens",
+      "passed": true
+    },
+    {
+      "name": "responsive, print and reduced-motion rules are present (not rendered)",
+      "passed": true
+    }
+  ],
+  "count": 27,
+  "officialQuickValidate": "Not completed: bundled quick_validate.py imports PyYAML, which is unavailable. No substitute yaml module or dependency installation was used.",
+  "limitations": [
+    "Not a general YAML parser or full JSON Schema engine.",
+    "CSS presence does not prove layout, browser compatibility or accessibility.",
+    "Visual rendering, true keyboard interaction and real browser file opening were not verified."
+  ]
+}
